@@ -14,7 +14,7 @@
         android:gravity="right"
         android:paddingHorizontal="30sp"
         android:text="0"
-        android:textSize="80sp" />
+        android:textSize="60sp" />
 
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
