@@ -44,7 +44,7 @@
             />
         <Button
             android:id="@+id/bt_div"
-            android:text="/"
+            android:text="÷"
             android:textSize="40sp"
 
             />
@@ -72,7 +72,7 @@
 
         <Button
             android:id="@+id/bt_mul"
-            android:text="*"
+            android:text="×"
             android:textSize="40sp"
 
             />
