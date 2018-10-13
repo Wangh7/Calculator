@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -112,8 +113,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_div() {
-
-        state = 4;
+        change_color(4);
+        if (state == 0 && a != 0 || click == 0)
+            state = 4;
+        else {
+            equ();
+            state = 4;
+        }
+        click = 0;
     }
 
     public void equ() {
@@ -131,7 +138,12 @@ public class MainActivity extends AppCompatActivity {
                 a = a * Integer.valueOf(exp);
                 break;
             case 4:
-                a = a / Integer.valueOf(exp);
+                try {
+                    a = a / Integer.valueOf(exp);
+                }catch (Exception e){
+                    Toast.makeText(MainActivity.this,"Error!",Toast.LENGTH_SHORT).show();
+                    click_clear();
+                }
                 break;
         }
         exp = "0";
