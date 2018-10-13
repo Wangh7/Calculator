@@ -57,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
     public void click_clear() {
         exp = "0";
         a = 0;
+        state=0;
+        resume_color();
         show(exp);
     }
 
@@ -83,7 +85,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_sub() {
-
+        change_color(2);
+        if (state == 0 && a != 0)
+            state = 2;
+        equ();
         state = 2;
     }
 
