@@ -53,7 +53,19 @@ public class MainActivity extends AppCompatActivity {
         operations[4].setOnClickListener(v -> click_div());//div
     }
 
+    public void change_clear(int i) {
+        if (i == 0) {
+            functions[1].setText("AC");
+            functions[1].setTextColor(Color.RED);
+        }
+        if (i == 1) {
+            functions[1].setText("CE");
+            functions[1].setTextColor(Color.rgb(0,200,0));
+        }
+    }
+
     public void click_show(String i) {
+        change_clear(1);
         resume_color();
         if (exp.equals("0"))
             exp = i;
@@ -64,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_dot() {
+        change_clear(1);
         if (dot == 0) {
             if (exp.equals("0"))
                 exp = "0.";
@@ -94,12 +107,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_clear() {
-        exp = "0";
-        a = 0;
-        state = 0;
-        dot = 0;
-        resume_color();
-        show(exp);
+        if (functions[1].getText().equals("AC")) {
+            exp = "0";
+            a = 0;
+            state = 0;
+            dot = 0;
+            resume_color();
+            show(exp);
+        }
+        if (functions[1].getText().equals("CE")) {
+            exp = "0";
+            dot = 0;
+            if(state!=0)
+                change_color(state);
+            show(exp);
+            change_clear(0);
+        }
     }
 
     public void trans() {
@@ -115,10 +138,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void change_color(int i) {
         resume_color();
-        operations[i].setTextColor(Color.rgb(255, 220, 0));
+        operations[i].setTextColor(Color.rgb(255, 215, 0));
     }
 
     public void click_add() {
+        change_clear(1);
         change_color(1);
         if (state == 0 && a != 0)
             state = 1;
@@ -129,6 +153,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_sub() {
+        change_clear(1);
         change_color(2);
         if (state == 0 && a != 0)
             state = 2;
@@ -141,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_mul() {
+        change_clear(1);
         change_color(3);
         if (state == 0 && a != 0 || click == 0)
             state = 3;
@@ -153,6 +179,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_div() {
+        change_clear(1);
         change_color(4);
         if (state == 0 && a != 0 || click == 0)
             state = 4;
@@ -196,6 +223,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_equ() {
+        change_clear(0);
         click = 0;
         if (state != 0) {
             equ();
