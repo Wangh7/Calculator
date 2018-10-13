@@ -10,6 +10,7 @@ public class MainActivity extends AppCompatActivity {
 
     public String exp = "0";
     public int a = 0;
+    public int click = 0;
     public int state = 0;//0 is null,1 is add,2 is sub,3 is mul,4 is div
     public Button[] buttons = new Button[11];
     public Button[] operations = new Button[5];
@@ -52,12 +53,13 @@ public class MainActivity extends AppCompatActivity {
         else
             exp = exp + i;
         show(exp);
+        click = 1;
     }
 
     public void click_clear() {
         exp = "0";
         a = 0;
-        state=0;
+        state = 0;
         resume_color();
         show(exp);
     }
@@ -66,35 +68,47 @@ public class MainActivity extends AppCompatActivity {
         a = Integer.valueOf(exp);
     }
 
-    public void resume_color(){
+    public void resume_color() {
         operations[1].setTextColor(Color.BLACK);
         operations[2].setTextColor(Color.BLACK);
         operations[3].setTextColor(Color.BLACK);
         operations[4].setTextColor(Color.BLACK);
     }
-    public void change_color(int i){
+
+    public void change_color(int i) {
         resume_color();
-        operations[i].setTextColor(Color.rgb(255,220,0));
+        operations[i].setTextColor(Color.rgb(255, 220, 0));
     }
+
     public void click_add() {
         change_color(1);
         if (state == 0 && a != 0)
             state = 1;
         equ();
         state = 1;
+        click = 0;
     }
 
     public void click_sub() {
         change_color(2);
         if (state == 0 && a != 0)
             state = 2;
+        if (state != 0 && click == 0)
+            state = 2;
         equ();
         state = 2;
+        click = 0;
     }
 
     public void click_mul() {
-
-        state = 3;
+        change_color(3);
+        if (state == 0 && a != 0 || click == 0)
+            state = 3;
+        else {
+            equ();
+            state = 3;
+        }
+        click = 0;
     }
 
     public void click_div() {
@@ -125,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_equ() {
+        click = 0;
         if (state != 0) {
             equ();
             state = 0;
