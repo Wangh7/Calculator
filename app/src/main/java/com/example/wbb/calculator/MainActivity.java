@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     public double a = 0;
     public int click = 0;
     public int dot = 0;
+    public int finish = 0;
     public int state = 0;//0 is null,1 is add,2 is sub,3 is mul,4 is div
     public Button[] buttons = new Button[11];
     public Button[] operations = new Button[5];
@@ -65,6 +66,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_show(String i) {
+        if(finish==1) {
+            a = 0;
+            finish = 0;
+        }
         change_clear(1);
         resume_color();
         if (exp.equals("0"))
@@ -112,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
             a = 0;
             state = 0;
             dot = 0;
+            finish = 0;
             resume_color();
             show(exp);
         }
@@ -144,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
     public void click_add() {
         change_clear(1);
         change_color(1);
+        finish = 0;
         if (state == 0 && a != 0)
             state = 1;
         if (state != 0 && click == 0)
@@ -157,6 +164,7 @@ public class MainActivity extends AppCompatActivity {
     public void click_sub() {
         change_clear(1);
         change_color(2);
+        finish = 0;
         if (state == 0 && a != 0)
             state = 2;
         if (state != 0 && click == 0)
@@ -170,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
     public void click_mul() {
         change_clear(1);
         change_color(3);
+        finish = 0;
         if (state == 0 && a != 0 || click == 0)
             state = 3;
         else {
@@ -183,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
     public void click_div() {
         change_clear(1);
         change_color(4);
+        finish = 0;
         if (state == 0 && a != 0 || click == 0)
             state = 4;
         else {
@@ -233,6 +243,7 @@ public class MainActivity extends AppCompatActivity {
             resume_color();
         }
         dot = 0;
+        finish=1;
     }
 
     public void show(String text) {
