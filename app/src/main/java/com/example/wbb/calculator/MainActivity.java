@@ -146,6 +146,8 @@ public class MainActivity extends AppCompatActivity {
         change_color(1);
         if (state == 0 && a != 0)
             state = 1;
+        if (state != 0 && click == 0)
+            state = 1;
         equ();
         state = 1;
         click = 0;
