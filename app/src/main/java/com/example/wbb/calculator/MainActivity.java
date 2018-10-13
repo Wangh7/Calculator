@@ -10,11 +10,13 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public String exp = "0";
+    public String last_exp = "0";
     public double a = 0;
     public int click = 0;
     public int dot = 0;
     public int finish = 0;
     public int state = 0;//0 is null,1 is add,2 is sub,3 is mul,4 is div
+    public int last_state = 0;
     public Button[] buttons = new Button[11];
     public Button[] operations = new Button[5];
     public Button[] functions = new Button[3];
@@ -61,12 +63,12 @@ public class MainActivity extends AppCompatActivity {
         }
         if (i == 1) {
             functions[1].setText("CE");
-            functions[1].setTextColor(Color.rgb(0,200,0));
+            functions[1].setTextColor(Color.rgb(0, 200, 0));
         }
     }
 
     public void click_show(String i) {
-        if(finish==1) {
+        if (finish == 1) {
             a = 0;
             finish = 0;
         }
@@ -114,8 +116,10 @@ public class MainActivity extends AppCompatActivity {
     public void click_clear() {
         if (functions[1].getText().equals("AC")) {
             exp = "0";
+            last_exp = "0";
             a = 0;
             state = 0;
+            last_state = 0;
             dot = 0;
             finish = 0;
             resume_color();
@@ -124,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         if (functions[1].getText().equals("CE")) {
             exp = "0";
             dot = 0;
-            if(state!=0)
+            if (state != 0)
                 change_color(state);
             show(exp);
             change_clear(0);
@@ -226,7 +230,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
         }
-
+        last_exp=exp;
         exp = "0";
         if (Math.round(a) - a == 0)
             show(String.valueOf((int) a));
@@ -237,13 +241,20 @@ public class MainActivity extends AppCompatActivity {
     public void click_equ() {
         change_clear(0);
         click = 0;
+        if (state == 0 && finish == 1) {
+            state=last_state;
+            exp=last_exp;
+            equ();
+            state=0;
+        }
         if (state != 0) {
             equ();
+            last_state=state;
             state = 0;
             resume_color();
         }
         dot = 0;
-        finish=1;
+        finish = 1;
     }
 
     public void show(String text) {
