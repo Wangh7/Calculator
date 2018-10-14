@@ -176,5 +176,20 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:id="@+id/bt_xy"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/bt_x_2"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/bt_x_3"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/bt_x_y"/>
 
 </LinearLayout>

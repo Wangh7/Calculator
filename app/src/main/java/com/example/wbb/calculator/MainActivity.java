@@ -65,6 +65,10 @@ public class MainActivity extends AppCompatActivity {
         new_functions[0].setOnClickListener(v -> click_pow(2));//pow2
         new_functions[1].setOnClickListener(v -> click_pow(3));//pow3
         new_functions[2].setOnClickListener(v -> click_powy());//powy
+        new_functions[4].setOnClickListener(v -> click_pow(1.0 / 2.0));
+        new_functions[5].setOnClickListener(v -> click_pow(1.0 / 3.0));
+        new_functions[6].setOnClickListener(v -> click_powhy());
+
     }
 
     public void click_pow(double i) {
@@ -74,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             a = Math.pow(a, i);
         if (click != 0)
             a = Math.pow(Double.valueOf(exp), i);
-        state = 6;
+        state = 7;
         powstate = 1;
         click_equ();
     }
@@ -89,6 +93,20 @@ public class MainActivity extends AppCompatActivity {
             state = 5;
         equ();
         state = 5;
+        click = 0;
+        dot = 0;
+    }
+
+    public void click_powhy() {
+        change_clear(1);
+        change_color(6);
+        finish = 0;
+        if (state == 0 && a != 0)
+            state = 6;
+        if (state != 0 && click == 0)
+            state = 6;
+        equ();
+        state = 6;
         click = 0;
         dot = 0;
     }
@@ -183,13 +201,16 @@ public class MainActivity extends AppCompatActivity {
         operations[3].setTextColor(Color.BLACK);
         operations[4].setTextColor(Color.BLACK);
         new_functions[2].setTextColor(Color.BLACK);
+        new_functions[6].setTextColor(Color.BLACK);
+
     }
 
     public void change_color(int i) {
         resume_color();
         if (i == 5)
             new_functions[2].setTextColor(Color.rgb(255, 215, 0));
-
+        else if (i == 6)
+            new_functions[6].setTextColor(Color.rgb(255, 215, 0));
         else
             operations[i].setTextColor(Color.rgb(255, 215, 0));
     }
@@ -275,6 +296,8 @@ public class MainActivity extends AppCompatActivity {
             case 5:
                 a = Math.pow(a, Double.valueOf(exp));
                 break;
+            case 6:
+                a = Math.pow(a, 1.0 / Double.valueOf(exp));
             default:
                 break;
         }
@@ -295,9 +318,9 @@ public class MainActivity extends AppCompatActivity {
             equ();
             state = 0;
         }
-        if(powstate == 1){
+        if (powstate == 1) {
             equ();
-            powstate=0;
+            powstate = 0;
         }
         if (state != 0) {
             equ();
