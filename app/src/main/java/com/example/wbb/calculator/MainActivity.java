@@ -20,10 +20,15 @@ public class MainActivity extends AppCompatActivity {
     public Button[] buttons = new Button[11];
     public Button[] operations = new Button[5];
     public Button[] functions = new Button[3];
+    public Button[] new_functions = new Button[16];
     public int[] flags = new int[]{R.id.bt_num0, R.id.bt_num1, R.id.bt_num2, R.id.bt_num3, R.id.bt_num4,
             R.id.bt_num5, R.id.bt_num6, R.id.bt_num7, R.id.bt_num8, R.id.bt_num9, R.id.bt_clear};
     public int[] flags_ope = new int[]{R.id.bt_equ, R.id.bt_add, R.id.bt_sub, R.id.bt_mul, R.id.bt_div};
     public int[] flags_fun = new int[]{R.id.bt_fuhao, R.id.bt_clear, R.id.bt_dot};
+    public int[] flags_newf = new int[]{R.id.bt_x2, R.id.bt_x3, R.id.bt_xy, R.id.bt_ex,
+            R.id.bt_x_2, R.id.bt_x_3, R.id.bt_x_y, R.id.bt_ln,
+            R.id.bt_sin, R.id.bt_cos, R.id.bt_tan, R.id.bt_e,
+            R.id.bt_1x, R.id.bt_xx, R.id.bt_test, R.id.bt_pi,};
 
     //public TextView tx = (TextView) findViewById(R.id.tx_bus);
     @Override
@@ -36,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
             operations[i] = (Button) findViewById(flags_ope[i]);
         for (int i = 0; i < flags_fun.length; i++)
             functions[i] = (Button) findViewById(flags_fun[i]);
+        for (int i = 0; i < flags_newf.length; i++)
+            new_functions[i] = (Button) findViewById(flags_newf[i]);
         buttons[0].setOnClickListener(v -> click_show("0"));
         buttons[1].setOnClickListener(v -> click_show("1"));
         buttons[2].setOnClickListener(v -> click_show("2"));
@@ -54,6 +61,34 @@ public class MainActivity extends AppCompatActivity {
         operations[2].setOnClickListener(v -> click_sub());//sub
         operations[3].setOnClickListener(v -> click_mul());//mul
         operations[4].setOnClickListener(v -> click_div());//div
+        new_functions[0].setOnClickListener(v -> click_pow(2));//pow2
+        new_functions[1].setOnClickListener(v -> click_pow(3));//pow3
+        new_functions[2].setOnClickListener(v -> click_powy());//powy
+    }
+
+    public void click_pow(double i) {
+
+        finish = 0;
+        if (click == 0)
+            a = Math.pow(a, i);
+        if (click != 0)
+            a = Math.pow(Double.valueOf(exp), i);
+        state = 5;
+        click_equ();
+    }
+
+    public void click_powy() {
+        change_clear(1);
+        change_color(5);
+        finish = 0;
+        if (state == 0 && a != 0)
+            state = 5;
+        if (state != 0 && click == 0)
+            state = 5;
+        equ();
+        state = 5;
+        click = 0;
+        dot = 0;
     }
 
     public void change_clear(int i) {
@@ -144,11 +179,16 @@ public class MainActivity extends AppCompatActivity {
         operations[2].setTextColor(Color.BLACK);
         operations[3].setTextColor(Color.BLACK);
         operations[4].setTextColor(Color.BLACK);
+        new_functions[2].setTextColor(Color.BLACK);
     }
 
     public void change_color(int i) {
         resume_color();
-        operations[i].setTextColor(Color.rgb(255, 215, 0));
+        if (i == 5)
+            new_functions[2].setTextColor(Color.rgb(255, 215, 0));
+
+        else
+            operations[i].setTextColor(Color.rgb(255, 215, 0));
     }
 
     public void click_add() {
@@ -229,8 +269,13 @@ public class MainActivity extends AppCompatActivity {
                     click_clear();
                 }
                 break;
+            case 5:
+                a = Math.pow(a, Double.valueOf(exp));
+                break;
+            default:
+                break;
         }
-        last_exp=exp;
+        last_exp = exp;
         exp = "0";
         if (Math.round(a) - a == 0)
             show(String.valueOf((int) a));
@@ -242,14 +287,14 @@ public class MainActivity extends AppCompatActivity {
         change_clear(0);
         click = 0;
         if (state == 0 && finish == 1) {
-            state=last_state;
-            exp=last_exp;
+            state = last_state;
+            exp = last_exp;
             equ();
-            state=0;
+            state = 0;
         }
         if (state != 0) {
             equ();
-            last_state=state;
+            last_state = state;
             state = 0;
             resume_color();
         }

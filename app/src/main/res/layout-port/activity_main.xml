@@ -29,6 +29,7 @@
         android:padding="10sp"
         tools:context=".MainActivity">
 
+
         <Button
             android:id="@+id/bt_clear"
             android:layout_columnSpan="2"
@@ -159,5 +160,20 @@
 
 
     </GridLayout>
-
+    <Button
+        android:id="@+id/bt_x2"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:visibility="gone"
+        />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/bt_x3"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/bt_xy"/>
 </LinearLayout>

@@ -118,17 +118,17 @@
             />
 
         <Button
-            android:id="@+id/x-2"
+            android:id="@+id/bt_x_2"
             android:text="x^-2"
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/x-3"
+            android:id="@+id/bt_x_3"
             android:text="x^-3"
             android:textSize="20sp" />
 
         <Button
-            android:id="@+id/bt_x-y"
+            android:id="@+id/bt_x_y"
             android:text="x^-y"
             android:textSize="20sp" />
 
