@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     public int click = 0;
     public int dot = 0;
     public int finish = 0;
+    public int powstate = 0;
     public int state = 0;//0 is null,1 is add,2 is sub,3 is mul,4 is div
     public int last_state = 0;
     public Button[] buttons = new Button[11];
@@ -73,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
             a = Math.pow(a, i);
         if (click != 0)
             a = Math.pow(Double.valueOf(exp), i);
-        state = 5;
+        state = 6;
+        powstate = 1;
         click_equ();
     }
 
@@ -154,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
             last_exp = "0";
             a = 0;
             state = 0;
+            powstate = 0;
             last_state = 0;
             dot = 0;
             finish = 0;
@@ -291,6 +294,10 @@ public class MainActivity extends AppCompatActivity {
             exp = last_exp;
             equ();
             state = 0;
+        }
+        if(powstate == 1){
+            equ();
+            powstate=0;
         }
         if (state != 0) {
             equ();

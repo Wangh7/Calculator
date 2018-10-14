@@ -176,4 +176,5 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:id="@+id/bt_xy"/>
+
 </LinearLayout>
