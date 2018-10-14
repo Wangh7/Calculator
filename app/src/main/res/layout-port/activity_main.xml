@@ -191,5 +191,20 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:id="@+id/bt_x_y"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/bt_sin"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/bt_cos"/>
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:id="@+id/bt_tan"/>
 
 </LinearLayout>

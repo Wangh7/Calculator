@@ -68,9 +68,42 @@ public class MainActivity extends AppCompatActivity {
         new_functions[4].setOnClickListener(v -> click_pow(1.0 / 2.0));
         new_functions[5].setOnClickListener(v -> click_pow(1.0 / 3.0));
         new_functions[6].setOnClickListener(v -> click_powhy());
+        new_functions[8].setOnClickListener(v -> click_sct(1));
+        new_functions[9].setOnClickListener(v -> click_sct(2));
+        new_functions[10].setOnClickListener(v -> click_sct(3));
+
 
     }
 
+    public void click_sct(int i){
+        finish = 0;
+        if (click == 0){
+            switch (i){
+                case 1:
+                    a=Math.sin(a);break;
+                case 2:
+                    a=Math.cos(a);break;
+                case 3:
+                    a=Math.tan(a);break;
+                default:break;
+            }
+        }
+
+        if (click != 0){
+            switch (i){
+                case 1:
+                    a=Math.sin(Double.valueOf(exp));break;
+                case 2:
+                    a=Math.cos(Double.valueOf(exp));break;
+                case 3:
+                    a=Math.tan(Double.valueOf(exp));break;
+                default:break;
+            }
+        }
+        state = 7;
+        powstate = 1;
+        click_equ();
+    }
     public void click_pow(double i) {
 
         finish = 0;
