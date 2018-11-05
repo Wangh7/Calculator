@@ -1,8 +1,11 @@
 package com.example.wbb.calculator;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,6 +33,27 @@ public class MainActivity extends AppCompatActivity {
             R.id.bt_x_2, R.id.bt_x_3, R.id.bt_x_y, R.id.bt_ln,
             R.id.bt_sin, R.id.bt_cos, R.id.bt_tan, R.id.bt_e,
             R.id.bt_1x, R.id.bt_xx, R.id.bt_test, R.id.bt_pi,};
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.normalcal_item:
+                break;
+            case R.id.numbertrans_item:
+                Intent intent = new Intent(MainActivity.this,TransActivity.class);
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
 
     //public TextView tx = (TextView) findViewById(R.id.tx_bus);
     @Override
