@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     public Button[] functions = new Button[3];
     public Button[] new_functions = new Button[16];
     public int[] flags = new int[]{R.id.bt_num0, R.id.bt_num1, R.id.bt_num2, R.id.bt_num3, R.id.bt_num4,
-            R.id.bt_num5, R.id.bt_num6, R.id.bt_num7, R.id.bt_num8, R.id.bt_num9, R.id.bt_clear};
+            R.id.bt_num5, R.id.bt_num6, R.id.bt_num7, R.id.bt_num8, R.id.bt_num9};
     public int[] flags_ope = new int[]{R.id.bt_equ, R.id.bt_add, R.id.bt_sub, R.id.bt_mul, R.id.bt_div};
     public int[] flags_fun = new int[]{R.id.bt_fuhao, R.id.bt_clear, R.id.bt_dot};
     public int[] flags_newf = new int[]{R.id.bt_x2, R.id.bt_x3, R.id.bt_xy, R.id.bt_ex,
