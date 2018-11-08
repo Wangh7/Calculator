@@ -2,8 +2,12 @@ package com.example.wbb.calculator;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.widget.Button;
 import android.widget.TextView;
+
+import static android.widget.TextView.AUTO_SIZE_TEXT_TYPE_NONE;
+import static android.widget.TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM;
 
 public class TransActivity extends AppCompatActivity {
     public int[] flags = new int[]{R.id.bt_num0, R.id.bt_num1, R.id.bt_num2, R.id.bt_num3, R.id.bt_num4,
@@ -30,6 +34,8 @@ public class TransActivity extends AppCompatActivity {
         buttons[10].setOnClickListener(v-> click_clear());
     }
     public void click_show(String i) {
+        TextView tx = (TextView) findViewById(R.id.ans2_tx);
+        tx.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_UNIFORM);
 
         //resume_color();
         if (exp.equals("0"))
@@ -52,6 +58,9 @@ public class TransActivity extends AppCompatActivity {
 
     }
     public void click_clear() {
+        TextView tx = (TextView)findViewById(R.id.ans2_tx);
+        tx.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_NONE);
+        tx.setTextSize(TypedValue.COMPLEX_UNIT_SP, 40);
         exp = "0";
         show(exp);
     }

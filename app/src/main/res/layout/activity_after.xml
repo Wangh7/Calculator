@@ -11,10 +11,6 @@
         android:id="@+id/tx_bus"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autoSizeMaxTextSize="60sp"
-        android:autoSizeMinTextSize="20sp"
-        android:autoSizeTextType="uniform"
-        android:autoSizeStepGranularity="4sp"
         android:gravity="right"
         android:maxLines="1"
         android:paddingHorizontal="30sp"
@@ -22,7 +18,6 @@
         android:textSize="60sp" />
 
     <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

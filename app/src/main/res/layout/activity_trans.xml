@@ -60,6 +60,10 @@
             android:gravity="right">
             <TextView
                 android:id="@+id/ans2_tx"
+                android:autoSizeMaxTextSize="40sp"
+                android:autoSizeMinTextSize="20sp"
+                android:autoSizeTextType="uniform"
+                android:autoSizeStepGranularity="4sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="right"

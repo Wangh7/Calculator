@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item
     android:id="@+id/normalcal_item"
-    android:title="标准计算"/>
+    android:title="后缀计算"/>
 <item
     android:id="@+id/numbertrans_item"
     android:title="进制转换"/>

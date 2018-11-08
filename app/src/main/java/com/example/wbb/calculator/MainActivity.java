@@ -4,11 +4,17 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import org.w3c.dom.Text;
+
+import static android.widget.TextView.AUTO_SIZE_TEXT_TYPE_NONE;
+import static android.widget.TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -180,6 +186,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_show(String i) {
+        TextView tx = (TextView) findViewById(R.id.tx_bus);
+        tx.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_UNIFORM);
         if (finish == 1) {
             a = 0;
             finish = 0;
@@ -226,6 +234,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void click_clear() {
+        TextView tx = (TextView)findViewById(R.id.tx_bus);
+        tx.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_NONE);
+        tx.setTextSize(TypedValue.COMPLEX_UNIT_SP, 60);
         if (functions[1].getText().equals("AC")) {
             exp = "0";
             last_exp = "0";
@@ -246,6 +257,7 @@ public class MainActivity extends AppCompatActivity {
             show(exp);
             change_clear(0);
         }
+
     }
 
     public void trans() {
