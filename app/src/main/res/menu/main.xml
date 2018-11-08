@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 <item
-    android:id="@+id/normalcal_item"
+    android:id="@+id/aftercal_item"
     android:title="后缀计算"/>
 <item
     android:id="@+id/numbertrans_item"

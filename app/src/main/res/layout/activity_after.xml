@@ -8,7 +8,16 @@
 
 
     <TextView
-        android:id="@+id/tx_bus"
+        android:id="@+id/tx_input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:maxLines="1"
+        android:paddingHorizontal="30sp"
+        android:text="0"
+        android:textSize="30sp"/>
+    <TextView
+        android:id="@+id/tx_output"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="right"
@@ -31,18 +40,48 @@
 
         <Button
             android:id="@+id/bt_clear"
-            android:layout_columnSpan="2"
-            android:layout_gravity="fill_horizontal"
             android:text="AC"
             android:textSize="40sp"
             android:textColor="#ff0000"
             />
 
-        <Button
-            android:id="@+id/bt_fuhao"
-            android:text="+/-"
-            android:textSize="40sp"
-            />
+
+
+        <LinearLayout
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_columnSpan="2"
+            android:layout_gravity="fill_horizontal"
+            >
+
+            <Button
+                android:id="@+id/bt_del"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="k"
+                android:textSize="40sp"
+                />
+
+            <Button
+                android:id="@+id/bt_left"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="("
+                android:textSize="40sp" />
+
+            <Button
+                android:id="@+id/bt_right"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text=")"
+                android:textSize="40sp" />
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/bt_div"
             android:text="÷"

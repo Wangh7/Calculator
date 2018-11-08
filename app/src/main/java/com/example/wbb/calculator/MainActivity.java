@@ -49,11 +49,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.normalcal_item:
+            case R.id.aftercal_item:
+                Intent intent = new Intent(MainActivity.this,AfterActivity.class);
+                startActivity(intent);
                 break;
             case R.id.numbertrans_item:
-                Intent intent = new Intent(MainActivity.this,TransActivity.class);
-                startActivity(intent);
+                Intent intent2 = new Intent(MainActivity.this,TransActivity.class);
+                startActivity(intent2);
                 break;
             default:
                 break;
