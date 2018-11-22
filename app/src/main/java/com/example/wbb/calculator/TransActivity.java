@@ -36,6 +36,7 @@ public class TransActivity extends AppCompatActivity {
     public void click_show(String i) {
         TextView tx = (TextView) findViewById(R.id.ans2_tx);
         tx.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        //自动调整字体大小
 
         //resume_color();
         if (exp.equals("0"))

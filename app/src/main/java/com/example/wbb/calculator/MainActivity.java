@@ -103,11 +103,74 @@ public class MainActivity extends AppCompatActivity {
         new_functions[8].setOnClickListener(v -> click_sct(1));
         new_functions[9].setOnClickListener(v -> click_sct(2));
         new_functions[10].setOnClickListener(v -> click_sct(3));
+        //new_functions[3].setOnClickListener(v-> click_ex());//e^x
+        //new_functions[7].setOnClickListener(v-> click_ln());//ln
+        new_functions[11].setOnClickListener(v-> click_e());//e
+        new_functions[12].setOnClickListener(v-> click_1x());//1/x
+        new_functions[13].setOnClickListener(v-> click_xx());//x!
+        //new_functions[14].setOnClickListener(v-> click_ex());//e^x
+        new_functions[15].setOnClickListener(v-> click_pi());//pi
+
 
 
     }
 
-    public void click_sct(int i){
+    public static int getNFactorial(int n){
+        if(n==0){
+            return 1;
+        }
+        return n*getNFactorial(n-1);
+    }
+
+    public void click_xx(){
+        try {
+            finish = 0;
+            if (click == 0) {
+                a = getNFactorial((int) a);
+            }
+
+            if (click != 0) {
+                a = getNFactorial(Integer.valueOf(exp));
+            }
+            state = 7;
+            powstate = 1;
+            click_equ();
+        }catch (Exception e){
+            exp="Error";
+            show(exp);
+        }
+    }
+
+    public void click_1x(){
+        finish = 0;
+        if (click == 0){
+           a=1.0/a;
+        }
+
+        if (click != 0){
+            a=1.0/(Double.valueOf(exp));
+        }
+        state = 7;
+        powstate = 1;
+        click_equ();
+    }
+
+    public void click_e(){
+        finish = 0;
+        exp = "2.718281828459045";
+        resume_color();
+        show(exp);
+        click = 1;
+    }
+
+    public void click_pi(){
+        finish = 0;
+        exp = "3.141592653589793";
+        resume_color();
+        show(exp);
+        click = 1;
+    }
+    public void click_sct(int i){   //sin,cos,tan按钮点击
         finish = 0;
         if (click == 0){
             switch (i){
@@ -136,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         powstate = 1;
         click_equ();
     }
-    public void click_pow(double i) {
+    public void click_pow(double i) {   //平方点击
 
         finish = 0;
         if (click == 0)
@@ -187,9 +250,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void click_show(String i) {
+    public void click_show(String i) {  //显示
         TextView tx = (TextView) findViewById(R.id.tx_bus);
-        tx.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_UNIFORM);
+        tx.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_UNIFORM);//字体大小自动更改
         if (finish == 1) {
             a = 0;
             finish = 0;
@@ -204,7 +267,7 @@ public class MainActivity extends AppCompatActivity {
         click = 1;
     }
 
-    public void click_dot() {
+    public void click_dot() {   //小数点
         change_clear(1);
         if (dot == 0) {
             if (exp.equals("0"))
@@ -216,7 +279,7 @@ public class MainActivity extends AppCompatActivity {
         dot = 1;
     }
 
-    public void click_fuhao() {
+    public void click_fuhao() { //负号
         double test;
         if (state == 0 && a != 0) {
             test = -1 * a;
@@ -235,9 +298,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void click_clear() {
+    public void click_clear() { //清除
         TextView tx = (TextView)findViewById(R.id.tx_bus);
-        tx.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_NONE);
+        tx.setAutoSizeTextTypeWithDefaults(AUTO_SIZE_TEXT_TYPE_NONE);//字体自动调整
         tx.setTextSize(TypedValue.COMPLEX_UNIT_SP, 60);
         if (functions[1].getText().equals("AC")) {
             exp = "0";
@@ -266,7 +329,7 @@ public class MainActivity extends AppCompatActivity {
         a = Double.valueOf(exp);
     }
 
-    public void resume_color() {
+    public void resume_color() {    //恢复颜色
         operations[1].setTextColor(Color.BLACK);
         operations[2].setTextColor(Color.BLACK);
         operations[3].setTextColor(Color.BLACK);
@@ -276,7 +339,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void change_color(int i) {
+    public void change_color(int i) {   //更改颜色
         resume_color();
         if (i == 5)
             new_functions[2].setTextColor(Color.rgb(255, 215, 0));
@@ -286,7 +349,7 @@ public class MainActivity extends AppCompatActivity {
             operations[i].setTextColor(Color.rgb(255, 215, 0));
     }
 
-    public void click_add() {
+    public void click_add() {   //加法
         change_clear(1);
         change_color(1);
         finish = 0;
@@ -300,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
         dot = 0;
     }
 
-    public void click_sub() {
+    public void click_sub() {   //减法
         change_clear(1);
         change_color(2);
         finish = 0;
@@ -314,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
         dot = 0;
     }
 
-    public void click_mul() {
+    public void click_mul() {   //乘法
         change_clear(1);
         change_color(3);
         finish = 0;
@@ -328,7 +391,7 @@ public class MainActivity extends AppCompatActivity {
         dot = 0;
     }
 
-    public void click_div() {
+    public void click_div() {   //除法
         change_clear(1);
         change_color(4);
         finish = 0;
@@ -342,7 +405,7 @@ public class MainActivity extends AppCompatActivity {
         dot = 0;
     }
 
-    public void equ() {
+    public void equ() { //等于，计算结果
         switch (state) {
             case 0:
                 trans();
@@ -359,16 +422,16 @@ public class MainActivity extends AppCompatActivity {
             case 4:
                 try {
                     a = a / Double.valueOf(exp);
-                } catch (Exception e) {
+                } catch (Exception e) { //除法异常
                     Toast.makeText(MainActivity.this, "Error!", Toast.LENGTH_SHORT).show();
                     click_clear();
                 }
                 break;
             case 5:
-                a = Math.pow(a, Double.valueOf(exp));
+                a = Math.pow(a, Double.valueOf(exp));   //乘方
                 break;
             case 6:
-                a = Math.pow(a, 1.0 / Double.valueOf(exp));
+                a = Math.pow(a, 1.0 / Double.valueOf(exp)); //开方
             default:
                 break;
         }
@@ -380,7 +443,7 @@ public class MainActivity extends AppCompatActivity {
             show(String.valueOf(a));
     }
 
-    public void click_equ() {
+    public void click_equ() {   //点击等于
         change_clear(0);
         click = 0;
         if (state == 0 && finish == 1) {
@@ -403,7 +466,7 @@ public class MainActivity extends AppCompatActivity {
         finish = 1;
     }
 
-    public void show(String text) {
+    public void show(String text) { //显示
         TextView tx = (TextView) findViewById(R.id.tx_bus);
         tx.setText(text);
     }

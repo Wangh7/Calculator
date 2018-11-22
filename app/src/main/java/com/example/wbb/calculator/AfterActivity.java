@@ -13,8 +13,6 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static android.widget.TextView.AUTO_SIZE_TEXT_TYPE_UNIFORM;
-
 public class AfterActivity extends AppCompatActivity {
     private int[] idNum = {R.id.bt_num0, R.id.bt_num1, R.id.bt_num2, R.id.bt_num3,
             R.id.bt_num4, R.id.bt_num5, R.id.bt_num6, R.id.bt_num7, R.id.bt_num8, R.id.bt_num9};  //数字Number输入
@@ -28,10 +26,8 @@ public class AfterActivity extends AppCompatActivity {
     private TextView output;
     private static String Text;
     @Override
-    /**
-     * EditText为输入字符行，
-     * TextView为结果。
-     */
+     // EditText为输入字符行
+     // TextView为结果
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_after);
@@ -68,9 +64,9 @@ public class AfterActivity extends AppCompatActivity {
                 }
             }
         });
-/**
- * 注册单击事件
- */
+
+        //注册单击事件
+
         for (int idcal = 0; idcal < idCal.length; idcal++) {
             buttonsCal[idcal] = (Button) findViewById(idCal[idcal]);
             buttonsCal[idcal].setOnClickListener(new CalOnClick(buttonsCal[idcal].getText().toString()));
@@ -132,10 +128,8 @@ public class AfterActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * 运算类，返回一个String结果
-     */
-    public class Calculate {
+
+    public class Calculate {    //具体运算
         public  String s1;
         StringBuilder str;
 
@@ -197,8 +191,8 @@ public class AfterActivity extends AppCompatActivity {
                                 stack.push(str);
                                 break;
                             }else{
-                                int ji1=this.youxianji(str);
-                                int ji2=this.youxianji(stack.peek());
+                                int ji1=this.firstLv(str);
+                                int ji2=this.firstLv(stack.peek());
                                 if(ji1>ji2){
                                     stack.push(str);
                                 }else{
@@ -208,7 +202,7 @@ public class AfterActivity extends AppCompatActivity {
                                             stack.push(str);
                                             break;
                                         }else{
-                                            if(this.youxianji(str)<=this.youxianji(f)){
+                                            if(this.firstLv(str)<=this.firstLv(f)){
                                                 afterList.add(f);
                                                 stack.pop();
                                             }else{
@@ -236,22 +230,18 @@ public class AfterActivity extends AppCompatActivity {
             //System.out.println(sb.toString());
             return afterList;
         }
-        /**
-         判断运算符的优先级
-         */
-        public int youxianji(String str){
+
+        public int firstLv(String str){   //判断优先级
             int result=0;
             if(str.equals("+")||str.equals("-")){
                 result=1;
             }else{
-                result =2;
+                result=2;
             }
             return result;
         }
-        /**
-         *判断字符串属于操作数、操作符还是括号
-         */
-        public int matchWitch(String s){
+
+        public int matchWitch(String s){    //判断当前是什么类型字符
             if(s.equals("(")){
                 return 1;
             }else if(s.equals(")")){
@@ -268,10 +258,8 @@ public class AfterActivity extends AppCompatActivity {
                 return 7;
             }
         }
-        /**
-         *计算a@b的简单方法
-         */
-        public Double singleEval(Double pop2,Double pop1,String str){
+
+        public Double calculteEqu(Double pop2, Double pop1, String str){   //运算类
             Double value=0.0;
             if(str.equals("+")){
                 value=pop2+pop1;
@@ -315,7 +303,7 @@ public class AfterActivity extends AppCompatActivity {
                     case 6:
                         Double pop1=stack.pop();
                         Double pop2=stack.pop();
-                        Double value=this.singleEval(pop2, pop1, str);
+                        Double value=this.calculteEqu(pop2, pop1, str);
                         stack.push(value);
                         break;
                     default:
@@ -337,7 +325,7 @@ public class AfterActivity extends AppCompatActivity {
         public void eval()throws Exception{
             List<String> list=new ArrayList<String>();
             //匹配运算符、括号、整数、小数，注意-和*要加\\
-            Pattern p = Pattern.compile("[+\\-÷\\×()]|\\d+\\.?\\d*");
+            Pattern p = Pattern.compile("[+\\-÷×()]|\\d+\\.?\\d*");
             Matcher m = p.matcher(s1);
             while(m.find()){
                 list.add(m.group());
